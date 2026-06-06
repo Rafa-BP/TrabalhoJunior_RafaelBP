@@ -1,7 +1,7 @@
 
 function FormCriar() {
     return (
-        <form action="post">
+        <form action="/criar" method="POST">
 
             <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
             <input type="text" id="nomeBarbearia" />

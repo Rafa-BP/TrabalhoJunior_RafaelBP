@@ -1,7 +1,7 @@
 
 function FormLogin() {
     return (
-        <form action="get">
+        <form action="/login" method="GET">
 
             <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
             <input type="text" id="nomeBarbearia" />
