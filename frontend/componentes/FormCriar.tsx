@@ -1,39 +1,58 @@
+import { useRef } from "react";
 
 function FormCriar() {
-    return (
-        <form action="/criar" method="POST">
+  const formulario = useRef<HTMLFormElement>(null);
 
-            <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
-            <input type="text" id="nomeBarbearia" />
+  async function handleCriar() {
+    const formData = new URLSearchParams(
+      new FormData(formulario.current!) as any,
+    );
 
-            <label htmlFor="nomeResponsavel">Nome do(a) Responsavel: </label>
-            <input type="text" id="nomeResponsavel" />
+    try {
+      const response = await fetch("http://localhost:3000/criar", {
+        method: "post",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("AAAAAAAAAAAA");
+      }
+      const data = await response.json()
 
-            <label htmlFor="senha">Senha: </label>
-            <input type="text" id="senha" />
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-            <label htmlFor="email">Email: </label>
-            <input type="email" id="email" />
-            
-            <label htmlFor="telefone">Telefone: </label>
-            <input type="telephone" id="telefone" />
+  return (
+    <>
+      <form action="" method="POST" ref={formulario}>
+        <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
+        <input type="text" name="nomeBarbearia" id="nomeBarbearia" />
 
-            <label htmlFor="telefone">Telefone: </label>
-            <input type="telephone" id="telefone" />
+        <label htmlFor="nomeResponsavel">Nome do(a) Responsavel: </label>
+        <input type="text" name="nomeResponsavel" id="nomeResponsavel" />
 
-            <label htmlFor="estado">Estado: </label>
-            <input type="text" id="estado" />
+        <label htmlFor="senha">Senha: </label>
+        <input type="text" name="senha" id="senha" />
 
-            <label htmlFor="cidade">Cidade: </label>
-            <input type="text" id="cidade" />
+        <label htmlFor="email">Email: </label>
+        <input type="email" name="email" id="email" />
 
-            <label htmlFor="numCadeiras">Numero de Cadeiras: </label>
-            <input type="number" id="numCadeiras" />
+        <label htmlFor="telefone">Telefone: </label>
+        <input type="telephone" name="telefone" id="telefone" />
 
-            <button type="submit">Criar Conta</button>
+        <label htmlFor="estado">Estado: </label>
+        <input type="text" name="estado" id="estado" />
 
-        </form>
-    )
+        <label htmlFor="cidade">Cidade: </label>
+        <input type="text" name="cidade" id="cidade" />
+
+        <label htmlFor="numCadeiras">Numero de Cadeiras: </label>
+        <input type="number" name="numCadeiras" id="numCadeiras" />
+      </form>
+      <button onClick={handleCriar}>Cadastrar Barbearia</button>
+    </>
+  );
 }
 
-export default FormCriar
+export default FormCriar;

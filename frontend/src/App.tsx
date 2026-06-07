@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-import FormCriar from "../componentes/FormCriar"
-import FormLogin from "../componentes/FormLogin"
+import FormCriar from "../componentes/FormCriar";
+import FormLogin from "../componentes/FormLogin";
 
 function App() {
-  const [test, setTest] = useState<boolean>(false);
+  const [test, setTest] = useState<boolean>(true);
 
   function handleMudarForm(): void {
     setTest(!test);
@@ -13,17 +13,18 @@ function App() {
 
   return (
     <>
-      <img src="" alt="" />
+      <img src="" alt="Imagem do interior de uma barbearia." />
       <main>
         { test 
-        ? <FormCriar/>
-        : <FormLogin/>
+        ? <FormCriar /> 
+        : <FormLogin />
         }
-        <button onClick={handleMudarForm}>{test ? "Efetuar Login" : "Criar Conta"}</button>
+        <button onClick={handleMudarForm}>
+          {test ? "Realizar Login" : "Criar Conta"}
+        </button>
       </main>
     </>
-
-  )
+  );
 }
 
-export default App
+export default App;
