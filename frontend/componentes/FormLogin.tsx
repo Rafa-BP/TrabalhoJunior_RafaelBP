@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import type { Usuario } from "../interfaces";
 
-function FormLogin() {
+function FormLogin({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usuario | null>>}) {
   const formulario = useRef<HTMLFormElement>(null);
 
   async function handleLogin() {

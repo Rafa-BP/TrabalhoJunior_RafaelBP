@@ -1,7 +1,5 @@
 import { Pool } from 'pg'
 
-console.log(process.env)
-
 export default new Pool({
   host: process.env.host,
   user: process.env.user,

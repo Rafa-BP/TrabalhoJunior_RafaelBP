@@ -1,5 +1,5 @@
 import router from "express"
-import criarController from "../controllers/criarController.js"
+import criarController from "./controllers/criarController.js"
 
 const rotaCriar = router();
 

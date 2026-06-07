@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import type { Usuario } from "../interfaces";
 
-function FormCriar() {
+function FormCriar({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usuario | null>>}) {
   const formulario = useRef<HTMLFormElement>(null);
 
   async function handleCriar() {
@@ -14,11 +15,16 @@ function FormCriar() {
         body: formData,
       });
       if (!response.ok) {
-        throw new Error("AAAAAAAAAAAA");
+        throw new Error("Erro do servidor.");
       }
       const data = await response.json();
+      console.log(data)
 
-      console.log(data);
+      if (data["status"] != "ok") {
+        throw new Error("Erro ao criar conta.");
+      }
+
+      setInfo(data.usuario);
 
     } catch (error) {
       console.log(error);

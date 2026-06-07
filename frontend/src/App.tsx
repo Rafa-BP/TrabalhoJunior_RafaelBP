@@ -4,24 +4,34 @@ import "./App.css";
 import FormCriar from "../componentes/FormCriar";
 import FormLogin from "../componentes/FormLogin";
 
+import type { Usuario } from "../interfaces.ts"
+
 function App() {
-  const [test, setTest] = useState<boolean>(true);
+  const [logar, setLogar] = useState<boolean>(true);
+  const [info, setInfo] = useState<Usuario | null>(null);
 
   function handleMudarForm(): void {
-    setTest(!test);
+    setLogar(!logar);
   }
 
-  return (
+  if (!info) return (
     <>
       <img src="" alt="Imagem do interior de uma barbearia." />
       <main>
-        { test 
-        ? <FormCriar /> 
-        : <FormLogin />
+        { logar 
+        ? <FormCriar setInfo={setInfo} /> 
+        : <FormLogin setInfo={setInfo} />
         }
         <button onClick={handleMudarForm}>
-          {test ? "Realizar Login" : "Criar Conta"}
+          {logar ? "Realizar Login" : "Criar Conta"}
         </button>
+      </main>
+    </>
+  )
+  return (
+    <>
+      <main>
+        <h1>{info["nomeBarbearia"]}</h1>
       </main>
     </>
   );
