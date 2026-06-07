@@ -1,15 +1,14 @@
 import express, { json } from "express"
 import cors from "cors"
 
+import rotaCriar from "./routes/routeCriar.js";
+
 const app = express();
 app.use(cors());
 
 app.use(express.urlencoded({extended: true}));
 
-app.post("/criar", (req, res) => {
-    console.log(req.body);
-    res.json({login: "ok"});
-})
+app.use("/criar", rotaCriar)
 
 app.post("/login", (req, res) => {
     console.log(req.body);

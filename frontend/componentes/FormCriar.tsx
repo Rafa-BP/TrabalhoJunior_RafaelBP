@@ -16,7 +16,9 @@ function FormCriar() {
       if (!response.ok) {
         throw new Error("AAAAAAAAAAAA");
       }
-      const data = await response.json()
+      const data = await response.json();
+
+      console.log(data);
 
     } catch (error) {
       console.log(error);

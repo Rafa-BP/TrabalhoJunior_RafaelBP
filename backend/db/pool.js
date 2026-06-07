@@ -1,9 +1,11 @@
-const { Pool } = require('pg');
+import { Pool } from 'pg'
 
-module.exports = new Pool({
+console.log(process.env)
+
+export default new Pool({
   host: process.env.host,
   user: process.env.user,
-  database: "",
-  password: "",
+  database: "cadastros",
+  password: process.env.DATABASE_PASSWORD,
   port: process.env.dbport
 });
