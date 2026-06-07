@@ -18,7 +18,6 @@ function FormCriar({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usua
         throw new Error("Erro do servidor.");
       }
       const data = await response.json();
-      console.log(data)
 
       if (data["status"] != "ok") {
         throw new Error("Erro ao criar conta.");

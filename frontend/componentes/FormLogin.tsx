@@ -5,12 +5,30 @@ function FormLogin({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usua
   const formulario = useRef<HTMLFormElement>(null);
 
   async function handleLogin() {
-    const data = new URLSearchParams(new FormData(formulario.current!) as any);
+    const formData = new URLSearchParams(
+      new FormData(formulario.current!) as any,
+    );
 
-    fetch("http://localhost:3000/login", {
-      method: "post",
-      body: data,
-    });
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "post",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Erro do servidor.");
+      }
+      const data = await response.json();
+      console.log(data)
+
+      if (data["status"] != "ok") {
+        throw new Error("Erro ao entrar na conta.");
+      }
+
+      setInfo(data.usuario);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

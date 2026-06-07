@@ -1,4 +1,3 @@
-import { json } from "express";
 import pool from "./pool.js";
 
 async function criarConta(data) {
@@ -17,6 +16,22 @@ async function criarConta(data) {
   );
 }
 
+async function pegarUsuarioPorNome(nomeBarbearia) {
+  const resultado = await pool.query(
+    "SELECT * FROM barbearias WHERE nomeBarbearia = ($1)",
+    [nomeBarbearia],
+  );
+  return resultado.rows[0];
+}
+
+async function deletarConta(nomeBarbearia) {
+  await pool.query("DELETE FROM barbearias WHERE nomeBarbearia = ($1)", [
+    nomeBarbearia,
+  ]);
+}
+
 export default {
   criarConta,
+  pegarUsuarioPorNome,
+  deletarConta,
 };
