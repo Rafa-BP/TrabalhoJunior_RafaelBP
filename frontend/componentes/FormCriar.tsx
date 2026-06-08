@@ -1,7 +1,11 @@
 import { useRef } from "react";
 import type { Usuario } from "../interfaces";
 
-function FormCriar({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usuario | null>>}) {
+function FormCriar({
+  setInfo,
+}: {
+  setInfo: React.Dispatch<React.SetStateAction<Usuario | null>>;
+}) {
   const formulario = useRef<HTMLFormElement>(null);
 
   async function handleCriar() {
@@ -24,7 +28,6 @@ function FormCriar({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usua
       }
 
       setInfo(data.usuario);
-
     } catch (error) {
       console.log(error);
     }
@@ -32,32 +35,51 @@ function FormCriar({setInfo}: {setInfo: React.Dispatch<React.SetStateAction<Usua
 
   return (
     <>
-      <form action="" method="POST" ref={formulario}>
-        <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
-        <input type="text" name="nomeBarbearia" id="nomeBarbearia" />
+      <h1>Cadastre sua barbearia!</h1>
+      <form action="" method="POST" ref={formulario} id="container-form">
+        <div className="container-col" id="nomeBarGrid">
+          <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
+          <input type="text" name="nomeBarbearia" id="nomeBarbearia"/>
+        </div>
 
-        <label htmlFor="nomeResponsavel">Nome do(a) Responsavel: </label>
-        <input type="text" name="nomeResponsavel" id="nomeResponsavel" />
+        <div className="container-col" id="nomeRespGrid">
+          <label htmlFor="nomeResponsavel">Nome do(a) Responsavel: </label>
+          <input type="text" name="nomeResponsavel" id="nomeResponsavel"/>
+        </div>
 
-        <label htmlFor="senha">Senha: </label>
-        <input type="text" name="senha" id="senha" />
+        <div className="container-col" id="senhaGrid">
+          <label htmlFor="senha">Senha: </label>
+          <input type="text" name="senha" id="senha"/>
+        </div>
 
-        <label htmlFor="email">Email: </label>
-        <input type="email" name="email" id="email" />
+        <div className="container-col" id="emailGrid">
+          <label htmlFor="email">Email: </label>
+          <input type="email" name="email" id="email"/>
+        </div>
 
-        <label htmlFor="telefone">Telefone: </label>
-        <input type="telephone" name="telefone" id="telefone" />
+        <div className="container-col" id="telefoneGrid">
+          <label htmlFor="telefone">Telefone: </label>
+          <input type="telephone" name="telefone" id="telefone"/>
+        </div>
 
-        <label htmlFor="estado">Estado: </label>
-        <input type="text" name="estado" id="estado" />
+        <div className="container-col" id="estadoGrid">
+          <label htmlFor="estado">Estado: </label>
+          <input type="text" name="estado" id="estado"/>
+        </div>
 
-        <label htmlFor="cidade">Cidade: </label>
-        <input type="text" name="cidade" id="cidade" />
+        <div className="container-col" id="cidadeGrid">
+          <label htmlFor="cidade">Cidade: </label>
+          <input type="text" name="cidade" id="cidade"/>
+        </div>
 
-        <label htmlFor="numCadeiras">Numero de Cadeiras: </label>
-        <input type="number" name="numCadeiras" id="numCadeiras" />
+        <div className="container-col" id="numCadeirasGrid">
+          <label htmlFor="numCadeiras">Num. Cadeiras: </label>
+          <input type="number" name="numCadeiras" id="numCadeiras"/>
+        </div>
       </form>
-      <button onClick={handleCriar}>Cadastrar Barbearia</button>
+      <button onClick={handleCriar} className="botaoPrincipal">
+        Cadastrar Barbearia
+      </button>
     </>
   );
 }

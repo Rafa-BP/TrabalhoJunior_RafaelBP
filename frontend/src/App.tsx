@@ -44,26 +44,39 @@ function App() {
 
   if (!info)
     return (
-      <>
-        <img src="" alt="Imagem do interior de uma barbearia." />
-        <main>
+      <main className="container">
+        <img
+          src="../public/imagemBarbearia.jpg"
+          alt="Imagem do interior de uma barbearia."
+          id="imagemPrincipal"
+        />
+        <aside id="container-aside">
           {logar ? (
-            <FormCriar setInfo={setInfo} />
+            <>
+              <FormCriar setInfo={setInfo} />
+              <p>Já tem cadastro?</p>
+            </>
           ) : (
-            <FormLogin setInfo={setInfo} />
+            <>
+              <FormLogin setInfo={setInfo} />
+              <p>Não tem cadastro?</p>
+            </>
           )}
-          <button onClick={handleMudarForm}>
-            {logar ? "Realizar Login" : "Criar Conta"}
+          <button onClick={handleMudarForm} className="botaoSecundario">
+            {logar ? "Entrar na conta" : "Cadastrar barbearia"}
           </button>
-        </main>
-      </>
+        </aside>
+      </main>
     );
   return (
     <>
-      <main>
-        <h1>{info["nomeBarbearia"]}</h1>
-        <button onClick={handleSairConta}>Encerrar Sessão</button>
-        <button onClick={handleRemoverCadastro}>Remover Cadastro</button>
+      <main className="container-col">
+        <h2>{info["nomeBarbearia"]}</h2>
+        <p>Responsavel: {info["nomeResponsavel"]}</p>
+        <div className="container">
+          <button onClick={handleSairConta} className="botaoSecundario">Encerrar Sessão</button>
+          <button onClick={handleRemoverCadastro} className="botaoSecundario">Remover Cadastro</button>
+        </div>
       </main>
     </>
   );

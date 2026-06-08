@@ -5,7 +5,6 @@ const salt = bcrypt.genSaltSync(10);
 
 async function criarConta(req, res) {
   const hash = bcrypt.hashSync(req.body["senha"], salt);
-
   try {
     await queries.criarConta({ ...req.body, senha: hash });
     res.json({ status: "ok", usuario: req.body });
