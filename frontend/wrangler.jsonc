@@ -1,0 +1,7 @@
+{
+  "name": "teste-junior",
+  "main": "src/main.tsx",
+  "assets": {
+    "directory": "./dist"
+  }
+}
