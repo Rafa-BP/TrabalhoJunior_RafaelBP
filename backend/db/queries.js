@@ -5,7 +5,7 @@ const iniciarBanco = async () => {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS barbearias (
         nomebarbearia TEXT PRIMARY KEY NOT NULL,
-        nomebarbearia TEXT NOT NULL,
+        nomeresponsavel TEXT NOT NULL,
         senha TEXT NOT NULL,
         email TEXT NOT NULL,
         telefone TEXT NOT NULL,
