@@ -1,8 +1,5 @@
 {
   "devDependencies": {
     "dotenv": "^17.4.2"
-  },
-  "dependencies": {
-    "react-router": "^7.17.0"
   }
 }

@@ -80,6 +80,11 @@ input {
     height: 100vh;
 }
 
+#mensagemErro {
+    color: rgb(200, 0, 0);
+    margin-bottom: 1rem;
+}
+
 #container-aside {
     position: absolute;
     display: flex;
@@ -89,6 +94,7 @@ input {
     justify-content: center;
 
     width: 40vw;
+    min-width: 500px;
     height: 100vh;
 
     top: 0;
@@ -111,9 +117,28 @@ input {
     margin-bottom: 3rem;
 }
 
-#login {
+#container-form-login {
+    display: grid;
+
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+
+    gap: .25rem;
+
+    width: 40%;
+    height: 15%;
+
+    margin-bottom: 3rem;
+}
+
+#nomeBar-login {
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+}
+
+#senha-login {
+    grid-column: 1 / 5;
+    grid-row: 2 / 3;
 }
 
 #nomeBarGrid { 

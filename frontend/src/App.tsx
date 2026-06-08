@@ -1,28 +1,32 @@
 import { useState } from "react";
 import "./App.css";
 
-import FormCriar from "../componentes/FormCriar";
-import FormLogin from "../componentes/FormLogin";
+import FormCreate from "../components/FormCreate.tsx";
+import FormLogin from "../components/FormLogin.tsx";
 
-import type { Usuario } from "../interfaces.ts";
+import type { User } from "../types/interfaces.ts";
 
 function App() {
   const [logar, setLogar] = useState<boolean>(true);
-  const [info, setInfo] = useState<Usuario | null>(null);
+  const [info, setInfo] = useState<User | null>(null);
 
   function handleMudarForm(): void {
     setLogar(!logar);
   }
 
-  function handleSairConta() {
+  function handleSairConta(): void {
     setInfo(null);
+  }
+
+  function handleMudarInfo(User: User): void {
+    setInfo(User);
   }
 
   async function handleRemoverCadastro() {
     try {
       const infoRem = new URLSearchParams(info as any);
 
-      const response = await fetch("http://localhost:3000/remover", {
+      const response = await fetch("http://localhost:3000/remove", {
         method: "post",
         body: infoRem,
       });
@@ -53,12 +57,12 @@ function App() {
         <aside id="container-aside">
           {logar ? (
             <>
-              <FormCriar setInfo={setInfo} />
+              <FormCreate onChange={handleMudarInfo} />
               <p>Já tem cadastro?</p>
             </>
           ) : (
             <>
-              <FormLogin setInfo={setInfo} />
+              <FormLogin onChange={handleMudarInfo} />
               <p>Não tem cadastro?</p>
             </>
           )}
@@ -71,8 +75,8 @@ function App() {
   return (
     <>
       <main className="container-col">
-        <h2>{info["nomeBarbearia"]}</h2>
-        <p>Responsavel: {info["nomeResponsavel"]}</p>
+        <h2>{info["nomebarbearia"]}</h2>
+        <p>Responsavel: {info["nomeresponsavel"]}</p>
         <div className="container">
           <button onClick={handleSairConta} className="botaoSecundario">Encerrar Sessão</button>
           <button onClick={handleRemoverCadastro} className="botaoSecundario">Remover Cadastro</button>
