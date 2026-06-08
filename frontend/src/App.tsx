@@ -4,23 +4,23 @@ import "./App.css";
 import FormCreate from "../components/FormCreate.tsx";
 import FormLogin from "../components/FormLogin.tsx";
 
-import imagem from "../public/imagembarbearia.png"
+import imagem from "../public/imagembarbearia.png";
 
 import type { User } from "../types/interfaces.ts";
 
 function App() {
-  const [logar, setLogar] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [info, setInfo] = useState<User | null>(null);
 
-  function handleMudarForm(): void {
-    setLogar(!logar);
+  function handleChangeForm(): void {
+    setIsLogin(!isLogin);
   }
 
-  function handleSairConta(): void {
+  function handleEndSession(): void {
     setInfo(null);
   }
 
-  function handleMudarInfo(User: User): void {
+  function handleChangeInfo(User: User): void {
     setInfo(User);
   }
 
@@ -28,10 +28,13 @@ function App() {
     try {
       const infoRem = new URLSearchParams(info as any);
 
-      const response = await fetch("https://testejunior-rafaelbp.onrender.com/remove", {
-        method: "post",
-        body: infoRem,
-      });
+      const response = await fetch(
+        "https://testejunior-rafaelbp.onrender.com/remove",
+        {
+          method: "post",
+          body: infoRem,
+        },
+      );
       if (!response.ok) {
         throw new Error("Erro do servidor.");
       }
@@ -48,7 +51,7 @@ function App() {
     }
   }
 
-  if (!info)
+  if (!info) {
     return (
       <main className="container">
         <img
@@ -57,31 +60,37 @@ function App() {
           id="imagemPrincipal"
         />
         <aside id="container-aside">
-          {logar ? (
+          {isLogin ? (
             <>
-              <FormCreate onChange={handleMudarInfo} />
-              <p>Já tem cadastro?</p>
+              <FormLogin onChange={handleChangeInfo} />
+              <p>Não tem cadastro?</p>
             </>
           ) : (
             <>
-              <FormLogin onChange={handleMudarInfo} />
-              <p>Não tem cadastro?</p>
+              <FormCreate onChange={handleChangeInfo} />
+              <p>Já tem cadastro?</p>
             </>
           )}
-          <button onClick={handleMudarForm} className="botaoSecundario">
-            {logar ? "Entrar na conta" : "Cadastrar barbearia"}
+          <button onClick={handleChangeForm} className="botaoSecundario">
+            {isLogin ? "Entrar na conta" : "Cadastrar barbearia"}
           </button>
         </aside>
       </main>
     );
+  }
+
   return (
     <>
       <main className="container-col">
         <h2>{info["nomebarbearia"]}</h2>
         <p>Responsavel: {info["nomeresponsavel"]}</p>
         <div className="container">
-          <button onClick={handleSairConta} className="botaoSecundario">Encerrar Sessão</button>
-          <button onClick={handleRemoverCadastro} className="botaoSecundario">Remover Cadastro</button>
+          <button onClick={handleEndSession} className="botaoSecundario">
+            Encerrar Sessão
+          </button>
+          <button onClick={handleRemoverCadastro} className="botaoSecundario">
+            Remover Cadastro
+          </button>
         </div>
       </main>
     </>

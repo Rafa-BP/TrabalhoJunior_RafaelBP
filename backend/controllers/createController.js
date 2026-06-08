@@ -6,9 +6,8 @@ import { validateCreate } from "./validateCredentials.js";
 const salt = bcrypt.genSaltSync(10);
 
 async function createAccount(req, res) {
-  const valido = await validateCreate(req, res)
-  console.log(valido)
-  if (valido) {
+  const valid = await validateCreate(req, res);
+  if (valid) {
     const hash = bcrypt.hashSync(req.body["senha"], salt);
     try {
       await queries.createAccount({ ...req.body, senha: hash });

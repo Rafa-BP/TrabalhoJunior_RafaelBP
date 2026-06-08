@@ -4,11 +4,11 @@ import type { User } from "../types/interfaces.ts";
 function FormCreate({onChange}: {onChange: (User: User) => void}) {
   const [mensagem, setMensagem] = useState<string>("");
 
-  const formulario = useRef<HTMLFormElement>(null);
+  const form = useRef<HTMLFormElement>(null);
 
-  async function handleCriar() {
+  async function handleCreate() {
     const formData = new URLSearchParams(
-      new FormData(formulario.current!) as any,
+      new FormData(form.current!) as any,
     );
 
     try {
@@ -35,7 +35,7 @@ function FormCreate({onChange}: {onChange: (User: User) => void}) {
   return (
     <>
       <h1>Cadastre sua barbearia!</h1>
-      <form action="" method="POST" ref={formulario} id="container-form">
+      <form action="" method="POST" ref={form} id="container-form">
         <div className="container-col" id="nomeBarGrid">
           <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
           <input type="text" name="nomebarbearia" id="nomeBarbearia"/>
@@ -48,7 +48,7 @@ function FormCreate({onChange}: {onChange: (User: User) => void}) {
 
         <div className="container-col" id="senhaGrid">
           <label htmlFor="senha">Senha: </label>
-          <input type="text" name="senha" id="senha"/>
+          <input type="password" name="senha" id="senha"/>
         </div>
 
         <div className="container-col" id="emailGrid">
@@ -77,7 +77,7 @@ function FormCreate({onChange}: {onChange: (User: User) => void}) {
         </div>
       </form>
       <p id="mensagemErro">{mensagem}</p>
-      <button onClick={handleCriar} className="botaoPrincipal">
+      <button onClick={handleCreate} className="botaoPrincipal">
         Cadastrar Barbearia
       </button>
     </>

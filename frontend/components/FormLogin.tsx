@@ -4,11 +4,11 @@ import type { User } from "../types/interfaces.ts";
 function FormLogin({onChange}: {onChange: (User: User) => void}) {
   const [mensagem, setMensagem] = useState<string>("");
 
-  const formulario = useRef<HTMLFormElement>(null);
+  const form = useRef<HTMLFormElement>(null);
 
   async function handleLogin() {
     const formData = new URLSearchParams(
-      new FormData(formulario.current!) as any,
+      new FormData(form.current!) as any,
     );
 
     try {
@@ -37,7 +37,7 @@ function FormLogin({onChange}: {onChange: (User: User) => void}) {
     <>
       <h1>Entre em sua conta!</h1>
 
-      <form action="" method="POST" ref={formulario} id="container-form-login">
+      <form action="" method="POST" ref={form} id="container-form-login">
         <div className="container-col" id="nomeBar-login">
           <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
           <input type="text" name="nomebarbearia" id="nomeBarbearia" />

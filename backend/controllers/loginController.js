@@ -6,12 +6,12 @@ async function loginAccount(req, res) {
     const info = await queries.getUserByName(req.body["nomebarbearia"]);
 
     if (info) {
-      const resultado = await bcrypt.compareSync(
+      const result = await bcrypt.compareSync(
         req.body["senha"],
         info["senha"],
       );
 
-      if (!resultado) {
+      if (!result) {
         res.json({
           status: "error",
           usuario: req.body,
