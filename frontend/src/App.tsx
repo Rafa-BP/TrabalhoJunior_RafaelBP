@@ -50,7 +50,7 @@ function App() {
     return (
       <main className="container">
         <img
-          src="/frontend/imagemBarbearia.jpg"
+          src="/frontend/imagembarbearia.jpg"
           alt="Imagem do interior de uma barbearia."
           id="imagemPrincipal"
         />
