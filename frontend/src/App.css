@@ -109,7 +109,7 @@ input {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
 
-    gap: .25rem;
+    gap: .5rem;
 
     width: 70%;
     height: 30%;
@@ -123,7 +123,7 @@ input {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
 
-    gap: .25rem;
+    gap: .5rem;
 
     width: 40%;
     height: 15%;

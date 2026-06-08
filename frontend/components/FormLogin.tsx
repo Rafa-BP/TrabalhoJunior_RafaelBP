@@ -1,21 +1,22 @@
 import { useRef, useState } from "react";
 import type { User } from "../types/interfaces.ts";
 
-function FormLogin({onChange}: {onChange: (User: User) => void}) {
+function FormLogin({ onChange }: { onChange: (User: User) => void }) {
   const [mensagem, setMensagem] = useState<string>("");
 
   const form = useRef<HTMLFormElement>(null);
 
   async function handleLogin() {
-    const formData = new URLSearchParams(
-      new FormData(form.current!) as any,
-    );
+    const formData = new URLSearchParams(new FormData(form.current!) as any);
 
     try {
-      const response = await fetch("https://testejunior-rafaelbp.onrender.com/login", {
-        method: "post",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://testejunior-rafaelbp.onrender.com/login",
+        {
+          method: "post",
+          body: formData,
+        },
+      );
       if (!response.ok) {
         throw new Error("Erro do servidor.");
       }
@@ -23,7 +24,7 @@ function FormLogin({onChange}: {onChange: (User: User) => void}) {
       console.log(data);
 
       if (data["status"] != "ok") {
-        setMensagem(data["message"])
+        setMensagem(data["message"]);
         throw new Error("Erro ao entrar na conta.");
       }
 
@@ -40,12 +41,12 @@ function FormLogin({onChange}: {onChange: (User: User) => void}) {
       <form action="" method="POST" ref={form} id="container-form-login">
         <div className="container-col" id="nomeBar-login">
           <label htmlFor="nomeBarbearia">Nome da Barbearia: </label>
-          <input type="text" name="nomebarbearia" id="nomeBarbearia" />
+          <input type="text" name="nomebarbearia" id="nomeBarbearia" maxLength={200}/>
         </div>
 
         <div className="container-col" id="senha-login">
           <label htmlFor="senha">Senha: </label>
-          <input type="text" name="senha" id="senha" />
+          <input type="text" name="senha" id="senha" minLength={8} maxLength={30}/>
         </div>
       </form>
       <p id="mensagemErro">{mensagem}</p>

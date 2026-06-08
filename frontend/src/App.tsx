@@ -9,7 +9,7 @@ import imagem from "../public/imagembarbearia.png";
 import type { User } from "../types/interfaces.ts";
 
 function App() {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [info, setInfo] = useState<User | null>(null);
 
   function handleChangeForm(): void {
@@ -72,7 +72,7 @@ function App() {
             </>
           )}
           <button onClick={handleChangeForm} className="botaoSecundario">
-            {isLogin ? "Entrar na conta" : "Cadastrar barbearia"}
+            {isLogin ? "Cadastrar barbearia" : "Entrar na conta"}
           </button>
         </aside>
       </main>
