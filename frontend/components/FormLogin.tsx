@@ -12,7 +12,7 @@ function FormLogin({onChange}: {onChange: (User: User) => void}) {
     );
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://testejunior-rafaelbp.onrender.com/login", {
         method: "post",
         body: formData,
       });

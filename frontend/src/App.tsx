@@ -26,7 +26,7 @@ function App() {
     try {
       const infoRem = new URLSearchParams(info as any);
 
-      const response = await fetch("http://localhost:3000/remove", {
+      const response = await fetch("https://testejunior-rafaelbp.onrender.com/remove", {
         method: "post",
         body: infoRem,
       });

@@ -12,7 +12,7 @@ function FormCreate({onChange}: {onChange: (User: User) => void}) {
     );
 
     try {
-      const response = await fetch("http://localhost:3000/create", {
+      const response = await fetch("https://testejunior-rafaelbp.onrender.com/create", {
         method: "post",
         body: formData,
       });
