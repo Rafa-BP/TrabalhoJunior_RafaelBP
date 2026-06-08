@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { User } from "../types/interfaces";
+import type { User } from "../types/interfaces.ts";
 
 function FormCreate({onChange}: {onChange: (User: User) => void}) {
   const [mensagem, setMensagem] = useState<string>("");
