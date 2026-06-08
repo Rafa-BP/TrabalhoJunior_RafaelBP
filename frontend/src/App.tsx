@@ -4,6 +4,8 @@ import "./App.css";
 import FormCreate from "../components/FormCreate.tsx";
 import FormLogin from "../components/FormLogin.tsx";
 
+import imagem from "../public/imagembarbearia.png"
+
 import type { User } from "../types/interfaces.ts";
 
 function App() {
@@ -50,7 +52,7 @@ function App() {
     return (
       <main className="container">
         <img
-          src="/frontend/imagembarbearia.jpg"
+          src={imagem}
           alt="Imagem do interior de uma barbearia."
           id="imagemPrincipal"
         />
