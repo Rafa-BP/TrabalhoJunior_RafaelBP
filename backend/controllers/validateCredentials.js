@@ -8,17 +8,17 @@ export async function validateCreate(req, res) {
         usuario: req.body,
         message: "Preencha todos os campos do formulario corretamente.",
       });
-      return false
+      return false;
     }
   }
-  const exists = await queries.getUserByName(req.body["nomebarbearia"])
+  const exists = await queries.getUserByName(req.body["nomebarbearia"]);
   if (exists) {
-      res.json({
+    res.json({
       status: "error",
       usuario: req.body,
       message: "Conta ja cadastrada para esta barbearia.",
     });
-    return false
+    return false;
   }
   if (req.body["senha"].length < 8) {
     res.json({
@@ -26,7 +26,7 @@ export async function validateCreate(req, res) {
       usuario: req.body,
       message: "A senha precisa ter no minimo 8 caracteres.",
     });
-    return false
+    return false;
   }
   if (req.body["numcadeiras"] < 1) {
     res.json({
@@ -34,8 +34,8 @@ export async function validateCreate(req, res) {
       usuario: req.body,
       message: "O numero de cadeiras tem que ser ao minimo 1.",
     });
-    return false
-  } 
+    return false;
+  }
 
-  return true
+  return true;
 }
